@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in — Marginalia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Marginalia</a>
+        <div class="nav-links">
+            <a href="/catalogue">Catalogue</a>
+            <a href="/register" class="btn-primary-small">Sign up</a>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <h1>Welcome back</h1>
+        <p class="auth-subtitle">Log in to continue.</p>
+
+        <% if (error) { %>
+            <div class="error-message"><%= error %></div>
+        <% } %>
+
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+            <button type="submit" class="btn-full">Log in</button>
+        </form>
+
+        <p class="auth-footer">New here? <a href="/register">Create an account</a></p>
+    </div>
+</body>
+</html>

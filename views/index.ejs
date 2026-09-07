@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marginalia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Marginalia</a>
+        <div class="nav-links">
+            <a href="/catalogue">Catalogue</a>
+            <% if (user) { %>
+                <span class="nav-user">Hi, <%= user.name.split(' ')[0] %></span>
+                <a href="/logout" class="btn-text">Log out</a>
+            <% } else { %>
+                <a href="/login" class="btn-text">Log in</a>
+                <a href="/register" class="btn-primary-small">Sign up</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Books worth <em>underlining</em>.</h1>
+        <p class="hero-subtitle">A small, carefully curated shelf of technical books.</p>
+        <a href="/catalogue" class="btn-primary">Browse the shelf</a>
+    </section>
+
+    <section class="featured">
+        <div class="section-header">
+            <h2>Currently recommending</h2>
+            <a href="/catalogue" class="link-arrow">See all &rarr;</a>
+        </div>
+        <div class="book-grid">
+            <% books.forEach(book => { %>
+                <a href="/catalogue" class="book-card">
+                    <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-cover" />
+                    <h3><%= book.title %></h3>
+                    <p class="book-author"><%= book.author %></p>
+                    <p class="book-price">₹<%= book.price %></p>
+                </a>
+            <% }); %>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Marginalia — curated technical reading, chosen with care.</p>
+    </footer>
+</body>
+</html>
