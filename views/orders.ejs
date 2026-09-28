@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders — Marginalia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="logo">Marginalia</a>
+            <span class="student-credit">Mohammed Ayman Siddiqui · CS-H · Roll 13 · PRN 12414007</span>
+        </div>
+        <div class="nav-links">
+            <a href="/catalogue">Catalogue</a>
+            <span class="nav-user">Hi, <%= user.name.split(' ')[0] %></span>
+            <a href="/logout" class="btn-text">Log out</a>
+        </div>
+    </nav>
+
+    <section class="orders-page">
+        <h1>My Orders</h1>
+
+        <% if (orders.length === 0) { %>
+            <div class="empty-cart">
+                <p>You haven't placed any orders yet.</p>
+                <a href="/catalogue" class="btn-primary">Browse the shelf</a>
+            </div>
+        <% } else { %>
+            <% orders.forEach(order => { %>
+                <div class="order-card">
+                    <div class="order-card-header">
+                        <span>Order #<%= order.id %></span>
+                        <span class="order-status"><%= order.status %></span>
+                    </div>
+                    <p class="order-date"><%= new Date(order.created_at).toDateString() %></p>
+                    <p class="order-total">Total: ₹<%= order.total %></p>
+                </div>
+            <% }); %>
+        <% } %>
+    </section>
+</body>
+</html>

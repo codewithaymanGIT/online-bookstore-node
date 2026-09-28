@@ -9,10 +9,15 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">Marginalia</a>
+        <div class="navbar-left">
+            <a href="/" class="logo">Marginalia</a>
+            <span class="student-credit">Mohammed Ayman Siddiqui · CS-H · Roll 13 · PRN 12414007</span>
+        </div>
         <div class="nav-links">
             <a href="/catalogue">Catalogue</a>
+            <a href="/cart" class="cart-link">Cart<% if (cartCount > 0) { %><span class="cart-badge"><%= cartCount %></span><% } %></a>
             <% if (user) { %>
+                <a href="/orders" class="btn-text">My Orders</a>
                 <span class="nav-user">Hi, <%= user.name.split(' ')[0] %></span>
                 <a href="/logout" class="btn-text">Log out</a>
             <% } else { %>
@@ -35,7 +40,7 @@
         </div>
         <div class="book-grid">
             <% books.forEach(book => { %>
-                <a href="/catalogue" class="book-card">
+                <a href="/book/<%= book.id %>" class="book-card">
                     <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-cover" />
                     <h3><%= book.title %></h3>
                     <p class="book-author"><%= book.author %></p>

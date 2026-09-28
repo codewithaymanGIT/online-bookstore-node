@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart — Marginalia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="logo">Marginalia</a>
+            <span class="student-credit">Mohammed Ayman Siddiqui · CS-H · Roll 13 · PRN 12414007</span>
+        </div>
+        <div class="nav-links">
+            <a href="/catalogue">Catalogue</a>
+            <% if (user) { %>
+                <a href="/orders" class="btn-text">My Orders</a>
+                <span class="nav-user">Hi, <%= user.name.split(' ')[0] %></span>
+                <a href="/logout" class="btn-text">Log out</a>
+            <% } else { %>
+                <a href="/login" class="btn-text">Log in</a>
+                <a href="/register" class="btn-primary-small">Sign up</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <section class="cart-page">
+        <h1>Your Cart</h1>
+
+        <% if (items.length === 0) { %>
+            <div class="empty-cart">
+                <p>Your cart is empty.</p>
+                <a href="/catalogue" class="btn-primary">Browse the shelf</a>
+            </div>
+        <% } else { %>
+            <div class="cart-items">
+                <% items.forEach(item => { %>
+                    <div class="cart-row">
+                        <img src="<%= item.cover_url %>" alt="<%= item.title %>" class="cart-cover" />
+                        <div class="cart-info">
+                            <h3><%= item.title %></h3>
+                            <p class="book-author"><%= item.author %></p>
+                        </div>
+                        <div class="cart-qty">
+                            <form method="POST" action="/cart/update/<%= item.id %>" class="qty-form">
+                                <button name="action" value="decrease" class="qty-btn">−</button>
+                                <span><%= item.qty %></span>
+                                <button name="action" value="increase" class="qty-btn">+</button>
+                            </form>
+                        </div>
+                        <div class="cart-line-total">₹<%= (item.price * item.qty).toFixed(2) %></div>
+                        <form method="POST" action="/cart/remove/<%= item.id %>">
+                            <button type="submit" class="remove-link">Remove</button>
+                        </form>
+                    </div>
+                <% }); %>
+            </div>
+
+            <div class="cart-summary">
+                <div class="cart-total-row">
+                    <span>Total</span>
+                    <span>₹<%= total.toFixed(2) %></span>
+                </div>
+                <a href="/checkout" class="btn-primary checkout-btn">Proceed to Checkout</a>
+            </div>
+        <% } %>
+    </section>
+
+    <footer class="footer">
+        <p>Marginalia — curated technical reading, chosen with care.</p>
+    </footer>
+</body>
+</html>

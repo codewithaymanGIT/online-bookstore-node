@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue — Marginalia</title>
+    <title><%= book.title %> — Marginalia</title>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -27,23 +27,26 @@
         </div>
     </nav>
 
-    <section class="catalogue-header">
-        <h1>The full shelf</h1>
-        <p>Every book we've read, argued about, and decided was worth your time.</p>
-    </section>
+    <section class="book-detail-layout">
+        <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-detail-cover" />
+        <div class="book-detail-info">
+            <h1><%= book.title %></h1>
+            <p class="book-detail-author">by <%= book.author %></p>
+            <div class="book-detail-rating">★ <%= book.rating %></div>
+            <p class="book-detail-price">₹<%= book.price %></p>
 
-    <section class="catalogue-grid">
-        <div class="book-grid">
-            <% books.forEach(book => { %>
-                <a href="/book/<%= book.id %>" class="book-card">
-                    <img src="<%= book.cover_url %>" alt="<%= book.title %>" class="book-cover" />
-                    <div class="book-info">
-                        <h3><%= book.title %></h3>
-                        <p class="book-author"><%= book.author %></p>
-                        <p class="book-price">₹<%= book.price %></p>
-                    </div>
-                </a>
-            <% }); %>
+            <p class="book-detail-desc"><%= book.description %></p>
+
+            <div class="curator-note">
+                <strong>Why we recommend it:</strong>
+                <p><%= book.curator_note %></p>
+            </div>
+
+            <form method="POST" action="/cart/add/<%= book.id %>" class="add-to-cart-form">
+                <button type="submit" class="btn-primary">Add to Cart</button>
+            </form>
+
+            <p class="stock-note"><%= book.stock %> copies in stock</p>
         </div>
     </section>
 
