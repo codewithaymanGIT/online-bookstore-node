@@ -1,9 +1,9 @@
-# Marginalia — Curated Technical Bookstore
+﻿# Marginalia â€” Curated Technical Bookstore
 
 A curated online bookstore for developers, built to feel like a real editorial bookshop rather than a generic e-commerce template.
 
 ## Concept
-Instead of a generic product catalogue, Marginalia is positioned as a small, opinionated bookshop — every book comes with a short "curator's note" explaining why it's worth reading, similar to independent bookshops like Bookshop.org.
+Instead of a generic product catalogue, Marginalia is positioned as a small, opinionated bookshop â€” every book comes with a short "curator's note" explaining why it's worth reading, similar to independent bookshops like Bookshop.org.
 
 ## Features
 - Editorial-style homepage with featured picks
@@ -34,3 +34,20 @@ Instead of a generic product catalogue, Marginalia is positioned as a small, opi
 - Passwords hashed with bcrypt before storage
 - Parameterized SQL queries throughout (no string concatenation)
 - Session secret stored in environment variables
+
+## Screenshots
+
+![Home](screenshots/home.png)
+
+![Catalogue](screenshots/catalogue.png)
+
+![Book detail](screenshots/book-detail.png)
+
+![Cart](screenshots/cart.png)
+
+![Checkout](screenshots/checkout.png)
+
+![Order confirmation](screenshots/order-confirmation.png)
+
+![Orders](screenshots/orders.png)
+

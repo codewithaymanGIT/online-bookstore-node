@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — Marginalia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="logo">Marginalia</a>
+            <span class="student-credit">Mohammed Ayman Siddiqui · CS-H · Roll 13 · PRN 12414007</span>
+        </div>
+        <div class="nav-links">
+            <a href="/catalogue">Catalogue</a>
+            <a href="/orders" class="btn-text">My Orders</a>
+            <span class="nav-user">Hi, <%= user.name.split(' ')[0] %></span>
+            <a href="/logout" class="btn-text">Log out</a>
+        </div>
+    </nav>
+
+    <section class="checkout-page">
+        <h1>Checkout</h1>
+
+        <div class="checkout-layout">
+            <form method="POST" action="/checkout" class="checkout-form">
+                <h3>Shipping details</h3>
+
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" name="name" value="<%= user.name %>" required />
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" required />
+                </div>
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" title="6-digit pincode" required />
+                </div>
+
+                <button type="submit" class="btn-full">Place Order — ₹<%= total.toFixed(2) %></button>
+            </form>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <% items.forEach(item => { %>
+                    <div class="summary-row">
+                        <span><%= item.title %> × <%= item.qty %></span>
+                        <span>₹<%= (item.price * item.qty).toFixed(2) %></span>
+                    </div>
+                <% }); %>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>₹<%= total.toFixed(2) %></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Marginalia — curated technical reading, chosen with care.</p>
+    </footer>
+</body>
+</html>

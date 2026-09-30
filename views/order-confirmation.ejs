@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed — Marginalia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="logo">Marginalia</a>
+            <span class="student-credit">Mohammed Ayman Siddiqui · CS-H · Roll 13 · PRN 12414007</span>
+        </div>
+        <div class="nav-links">
+            <a href="/catalogue">Catalogue</a>
+            <a href="/orders" class="btn-text">My Orders</a>
+            <span class="nav-user">Hi, <%= user.name.split(' ')[0] %></span>
+            <a href="/logout" class="btn-text">Log out</a>
+        </div>
+    </nav>
+
+    <section class="confirmation-page">
+        <div class="confirmation-icon">✓</div>
+        <h1>Order confirmed</h1>
+        <p class="confirmation-sub">Thank you, <%= order.shipping_name %>. Your order #<%= order.id %> has been placed.</p>
+
+        <div class="order-summary confirmation-summary">
+            <% items.forEach(item => { %>
+                <div class="summary-row">
+                    <span><%= item.title %> × <%= item.quantity %></span>
+                    <span>₹<%= (item.price * item.quantity).toFixed(2) %></span>
+                </div>
+            <% }); %>
+            <div class="summary-total">
+                <span>Total</span>
+                <span>₹<%= order.total %></span>
+            </div>
+        </div>
+
+        <p class="shipping-note">
+            Shipping to: <%= order.shipping_address %>, <%= order.shipping_city %> - <%= order.shipping_pincode %>
+        </p>
+
+        <a href="/catalogue" class="btn-primary">Continue browsing</a>
+    </section>
+
+    <footer class="footer">
+        <p>Marginalia — curated technical reading, chosen with care.</p>
+    </footer>
+</body>
+</html>
