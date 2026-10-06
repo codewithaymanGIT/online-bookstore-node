@@ -1,9 +1,9 @@
-﻿# Marginalia â€” Curated Technical Bookstore
+# Marginalia — Curated Technical Bookstore
 
 A curated online bookstore for developers, built to feel like a real editorial bookshop rather than a generic e-commerce template.
 
 ## Concept
-Instead of a generic product catalogue, Marginalia is positioned as a small, opinionated bookshop â€” every book comes with a short "curator's note" explaining why it's worth reading, similar to independent bookshops like Bookshop.org.
+Instead of a generic product catalogue, Marginalia is positioned as a small, opinionated bookshop — every book comes with a short "curator's note" explaining why it's worth reading, similar to independent bookshops like Bookshop.org.
 
 ## Features
 - Editorial-style homepage with featured picks
